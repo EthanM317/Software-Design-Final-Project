@@ -89,7 +89,15 @@ public class Backend {
 
 
     public static void printProducts() {
+        if (products.isEmpty()) {
+            System.out.println("product list is empty.");
+        } else {
+            System.out.println("Current Produect list is: ");
+            for (Product p: products) {
+                System.out.println(p.getCost() + ", " + p.getCost() + "," + p.getName());
 
+            }
+        }
     }
 
 }
