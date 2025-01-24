@@ -74,7 +74,7 @@ public class Backend {
     // File processing
 
     // Flush database and add all values from csv
-    public static void readProducts(String filePath) {
+    public static void readCsv(String filePath) {
         products.clear();
         
         try {
@@ -138,7 +138,7 @@ public class Backend {
 
     public static void main(String[] args) {
         // Read products in from original data csv
-        readProducts("data.csv");
+        readCsv("data.csv");
 
         // Add new product
         addProduct("thing", 20, 999);
