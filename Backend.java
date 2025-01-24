@@ -1,9 +1,22 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 
+/*
+    -- HOW TO MANIPULATE CSV FILES WITH THIS CLASS --
+    
+    1. Open a CSV with "readCsv([filepath]);"
+
+    2. Perform all add/remove operations
+
+    3. Write changes back to the CSV with "writeCsv([filepath])"
+        - NOTE: You can create a new CSV by changing the path that you pass into "writeCsv"
+            EX. writeCsv("./data2.csv"); will create a new CSV called "data2" with the contents of the product list
+ */ 
+
 public class Backend {
-    // Product class
+    // -- Product class --
     public static class Product {
         // Product properties
         private String name;
@@ -34,12 +47,7 @@ public class Backend {
         products.add(prod);
     }
 
-    // Remove a product from the list by name
-    // public void removeProduct(String name) {
-        
-    // }
-
-    // Remove product from list by reference
+    // Remove product from list by properties
     public static void removeProduct(String name, float cost, int id) {
         Product rProduct = null;
         for (Product p : products) {
@@ -73,22 +81,18 @@ public class Backend {
     // File processing
 
     // Flush database and add all values from csv
-    public static void readProducts(String filePath) {
+    public static void readCsv(String filePath) {
         products.clear();
         
         try {
             BufferedReader f = new BufferedReader(new FileReader(filePath));
             String line;
 
-            // First line is garbage
+            // First line is garbage- skip it
             f.readLine();
 
             while ((line = f.readLine()) != null) {
                 String[] values = line.split(",");
-
-                // System.out.println(values[0]);
-                // System.out.println(values[1]);
-                // System.out.println(values[2]);
                 
                 addProduct(values[0], Float.parseFloat(values[1]), Integer.parseInt(values[2]));
             }
@@ -98,11 +102,6 @@ public class Backend {
             e.printStackTrace();
         }
     }
-
-    public static void main(String[] args) {
-        readProducts("data.csv");
-    }
-
 
     public static void printProducts() {
         if (products.isEmpty()) {
@@ -116,4 +115,41 @@ public class Backend {
         }
     }
 
+    // Write the contents of the product list into a csv
+    public static void writeCsv(String path) {
+        if (products.isEmpty())
+            System.out.println("No products to write");
+
+        try {
+            FileWriter f = new FileWriter(path);
+
+            // Write header
+            f.write("Product_Name,Cost,Product_ID\n");
+
+            // Write each product's name, cost, and id to a line in the csv
+            for (Product p : products) {
+                if (p == null)
+                    continue;
+                
+                String line = p.name + "," + p.cost + "," + p.id + "\n";
+                f.write(line);
+            }
+            f.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) {
+        // Read products in from original data csv
+        readCsv("data.csv");
+
+        // Add new product
+        addProduct("thing", 20, 999);
+        // removeProduct("thing", 20, 999);
+
+        // Write everything to a completely new file "data2.csv"
+        writeCsv("data2.csv");
+    }
 }
