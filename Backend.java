@@ -41,7 +41,7 @@ public class Backend {
 
     // Remove product from list by reference
     public static void removeProduct(String name, float cost, int id) {
-        Product removeProduct = null;
+        Product rProduct = null;
         for (Product p : products) {
             if (!p.getName().equals(name)) {
                 continue;
@@ -53,12 +53,12 @@ public class Backend {
                 continue;
             }
             
-            removeProduct = p;
+            rProduct = p;
             break;
         }
 
-        if (removeProduct != null && productExists(removeProduct)) {
-            products.remove(removeProduct);
+        if (rProduct != null && productExists(rProduct)) {
+            products.remove(rProduct);
         }
         else {
             System.out.println("Error: trying to remove product that doesn't exist");
