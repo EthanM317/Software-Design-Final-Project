@@ -106,7 +106,8 @@ public class Backend {
             while ((line = f.readLine()) != null) {
                 String[] values = line.split(",");
                 
-                addProduct(values[0], Float.parseFloat(values[1]), Integer.parseInt(values[2]));
+                Product prod = new Product(values[0], Float.parseFloat(values[1]), Integer.parseInt(values[2]));
+                products.add(prod);
             }
             f.close();
         }
