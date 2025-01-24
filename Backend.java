@@ -3,7 +3,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 
 public class Backend {
-    public class Product {
+    public static class Product {
         // Product properties
         private String name;
         private float cost;
@@ -17,13 +17,14 @@ public class Backend {
         }
     }
     
-    private ArrayList<Product> products;    
+    // Main list of products
+    private static ArrayList<Product> products;    
 
     // Get list 
-    private ArrayList<Product> getList() { return products; }
+    private static ArrayList<Product> getList() { return products; }
 
     // Adds a product to the master product list
-    public void addProduct(String name, float cost, int id) {
+    public static void addProduct(String name, float cost, int id) {
         Product prod = new Product(name, cost, id);
         products.add(prod);
     }
@@ -34,7 +35,7 @@ public class Backend {
     // }
 
     // Remove product from list by reference
-    public void removeProduct(Product product) {
+    public static void removeProduct(Product product) {
         if (productExists(product)) {
             products.remove(product);
         }
@@ -43,7 +44,7 @@ public class Backend {
         }
     }
 
-    public boolean productExists(Product prod) {
+    public static boolean productExists(Product prod) {
         return products.contains(prod);
     }
 
@@ -51,7 +52,7 @@ public class Backend {
     // File processing
 
     // Flush database and add all values from csv
-    public void readProducts(String filePath) {
+    public static void readProducts(String filePath) {
         products.clear();
         
         try {
@@ -70,8 +71,4 @@ public class Backend {
         }
     }
 
-
-    public static void main(String[] args) {
-
-    }
 }
