@@ -20,7 +20,7 @@ public class Ui {
         String keepGoing = "Y";
 
         //gets values of each product property
-        while(keepGoing.equals("Y")){
+        while(keepGoing.equals("Y") || keepGoing.equals("y")){
             System.out.println("Enter product name: "); 
             String productName = scanner.nextLine();
             System.out.println("Enter ID: "); 
@@ -46,7 +46,7 @@ public class Ui {
         //tracks if user wants to continue removing items
         String keepGoing = "Y";
         //gets each property of the object you want to remove
-        while(keepGoing.equals("Y")){
+        while(keepGoing.equals("Y") || keepGoing.equals("y")){
             System.out.println("Enter product name: "); 
             String productName = scanner.nextLine();
             System.out.println("Enter ID: "); 
