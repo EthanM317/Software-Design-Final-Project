@@ -7,10 +7,10 @@ public class Ui {
         //start scanner
         Scanner scanner = new Scanner(System.in);
         //tracks if user wants to continue or not
-        String keepGoing = "";
+        String keepGoing = "Y";
 
         //gets values of each product property
-        while(scanner.hasNext() && keepGoing.equals("Y")){
+        while(keepGoing.equals("Y")){
             System.out.println("Enter product name: "); 
             String productName = scanner.nextLine();
             System.out.println("Enter ID: "); 
@@ -30,15 +30,16 @@ public class Ui {
                 keepGoing = scanner.nextLine();
             }
         }
+        scanner.close();
     }
 
     public static void removeProduct() {
         //stats scanner
         Scanner scanner = new Scanner(System.in);
         //tracks if user wants to continue removing items
-        String keepGoing = "";
+        String keepGoing = "Y";
         //gets each property of the object you want to remove
-        while(scanner.hasNext() && keepGoing.equals("Y")){
+        while(keepGoing.equals("Y")){
             System.out.println("Enter product name: "); 
             String productName = scanner.nextLine();
             System.out.println("Enter ID: "); 
@@ -58,6 +59,8 @@ public class Ui {
                 keepGoing = scanner.nextLine();
             }
         }
+        scanner.close();
     }
+    
 }
 
