@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 /*
     -- HOW TO MANIPULATE CSV FILES WITH THIS CLASS --
-    
+
     1. Open a CSV with "readCsv([filepath]);"
 
     2. Perform all add/remove operations
@@ -38,17 +38,26 @@ public class Backend {
     // Main list of products
     private static ArrayList<Product> products = new ArrayList<>();    
 
+    // Main csv filepath
+    public static final String CSV_PATH = "./data.csv";
+
     // Get list 
     public static ArrayList<Product> getList() { return products; }
 
     // Adds a product to the master product list
     public static void addProduct(String name, float cost, int id) {
+        readCsv(CSV_PATH);
+
         Product prod = new Product(name, cost, id);
         products.add(prod);
+
+        writeCsv(CSV_PATH);
     }
 
     // Remove product from list by properties
     public static void removeProduct(String name, float cost, int id) {
+        readCsv(CSV_PATH);
+
         Product rProduct = null;
         for (Product p : products) {
             if (!p.getName().equals(name)) {
@@ -71,9 +80,12 @@ public class Backend {
         else {
             System.out.println("Error: trying to remove product that doesn't exist");
         }
+
+        writeCsv(CSV_PATH);
     }
 
     public static boolean productExists(Product prod) {
+        readCsv(CSV_PATH);
         return products.contains(prod);
     }
 
@@ -81,7 +93,7 @@ public class Backend {
     // File processing
 
     // Flush database and add all values from csv
-    public static void readCsv(String filePath) {
+    private static void readCsv(String filePath) {
         products.clear();
         
         try {
@@ -104,6 +116,8 @@ public class Backend {
     }
 
     public static void printProducts() {
+        readCsv(CSV_PATH);
+
         if (products.isEmpty()) {
             System.out.println("product list is empty.");
         } else {
@@ -116,7 +130,7 @@ public class Backend {
     }
 
     // Write the contents of the product list into a csv
-    public static void writeCsv(String path) {
+    private static void writeCsv(String path) {
         if (products.isEmpty())
             System.out.println("No products to write");
 
