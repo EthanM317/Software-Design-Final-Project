@@ -2,6 +2,16 @@ import java.util.Scanner;
 
 
 public class Ui {
+    //Ui main
+    public static void menu(){
+        System.out.println("----------");
+        System.out.println("Please choose one of the following options:");
+        System.out.println("Enter 1 for viewing list of products");
+        System.out.println("Enter 2 for adding a product");
+        System.out.println("Enter 3 for editing a product");
+        System.out.println("Enter 4 for deleting a product");
+    }
+
 
     public static void addProduct() {
         //start scanner
