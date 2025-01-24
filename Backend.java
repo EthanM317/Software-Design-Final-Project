@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 public class Backend {
@@ -99,11 +100,6 @@ public class Backend {
         }
     }
 
-    public static void main(String[] args) {
-        readProducts("data.csv");
-    }
-
-
     public static void printProducts() {
         if (products.isEmpty()) {
             System.out.println("product list is empty.");
@@ -116,4 +112,39 @@ public class Backend {
         }
     }
 
+    // Dump the contents of the product list into a csv
+    public static void writeCsv(String path) {
+        if (products.isEmpty())
+            System.out.println("No products to write");
+
+        try {
+            FileWriter f = new FileWriter(path);
+
+            f.write("Product_Name,Cost,Product_ID\n");
+
+            for (Product p : products) {
+                if (p == null)
+                    continue;
+                
+                String line = p.name + "," + p.cost + "," + p.id + "\n";
+                f.write(line);
+            }
+            f.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) {
+        // Read products in from original data csv
+        readProducts("data.csv");
+
+        // Add new product
+        addProduct("thing", 20, 999);
+        // removeProduct("thing", 20, 999);
+
+        // Write everything to a completely new file "data2.csv"
+        writeCsv("data2.csv");
+    }
 }
