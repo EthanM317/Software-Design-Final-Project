@@ -1,21 +1,48 @@
+import java.lang.classfile.instruction.ThrowInstruction;
 import java.util.Scanner; 
 
 
 public class Ui {
+    private static Scanner scanner = new Scanner(System.in);
     //Ui main
-    public static void menu(){
+    private static void menu(){
         System.out.println("----------");
         System.out.println("Please choose one of the following options:");
         System.out.println("Enter 1 for viewing list of products");
         System.out.println("Enter 2 for adding a product");
         System.out.println("Enter 3 for editing a product");
         System.out.println("Enter 4 for deleting a product");
+        int choice = scanner.nextInt();
+        //options
+        switch (choice) {
+            case 1:
+                
+                break;
+            case 2:
+                addProduct();
+                break;
+            case 3:
+                
+                break;
+            case 4:
+                removeProduct();
+                break;
+            default:
+                System.out.println("Entered an invalid option");
+        }
+
     }
 
 
-    private static Scanner scanner = new Scanner(System.in);
+    private static void printProducts(){
+        Backend.printProducts();
+    }
+    
+    private static void editProducts(){
 
-    public static void addProduct() {
+    }
+
+    private static void addProduct() {
         //tracks if user wants to continue or not
         String keepGoing = "Y";
 
@@ -42,7 +69,7 @@ public class Ui {
         }
     }
 
-    public static void removeProduct() {
+    private static void removeProduct() {
         //tracks if user wants to continue removing items
         String keepGoing = "Y";
         //gets each property of the object you want to remove
