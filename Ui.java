@@ -3,9 +3,9 @@ import java.util.Scanner;
 
 public class Ui {
 
+    private static Scanner scanner = new Scanner(System.in);
+
     public static void addProduct() {
-        //start scanner
-        Scanner scanner = new Scanner(System.in);
         //tracks if user wants to continue or not
         String keepGoing = "Y";
 
@@ -30,12 +30,9 @@ public class Ui {
                 keepGoing = scanner.nextLine();
             }
         }
-        scanner.close();
     }
 
     public static void removeProduct() {
-        //stats scanner
-        Scanner scanner = new Scanner(System.in);
         //tracks if user wants to continue removing items
         String keepGoing = "Y";
         //gets each property of the object you want to remove
@@ -59,7 +56,6 @@ public class Ui {
                 keepGoing = scanner.nextLine();
             }
         }
-        scanner.close();
     }
     
 }
