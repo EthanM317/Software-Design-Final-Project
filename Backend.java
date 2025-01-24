@@ -1,3 +1,5 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
 
 public class Backend {
@@ -47,7 +49,29 @@ public class Backend {
 
 
     // File processing
+
+    // Flush database and add all values from csv
     public void readProducts(String filePath) {
+        products.clear();
         
+        try {
+            BufferedReader f = new BufferedReader(new FileReader(filePath));
+            String line;
+
+            while ((line = f.readLine()) != null) {
+                String[] values = line.split(",");
+                
+                addProduct(values[0], Float.parseFloat(values[1]), Integer.parseInt(values[2]));
+            }
+            f.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static void main(String[] args) {
+
     }
 }
