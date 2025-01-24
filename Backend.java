@@ -33,6 +33,10 @@ public class Backend {
         public String getName() { return name; }
         public float getCost() { return cost; }
         public int getId() { return id; }
+
+        public void setName(String newName) { name = newName; }
+        public void setCost(float newCost) { cost = newCost; }
+        public void setId(int newId) { id = newId; }
     }
     
     // Main list of products
@@ -42,7 +46,10 @@ public class Backend {
     public static final String CSV_PATH = "./data.csv";
 
     // Get list 
-    public static ArrayList<Product> getList() { return products; }
+    public static ArrayList<Product> getList() { 
+        readCsv(CSV_PATH);
+        return products; 
+    }
 
     // Adds a product to the master product list
     public static void addProduct(String name, float cost, int id) {
@@ -131,7 +138,7 @@ public class Backend {
     }
 
     // Write the contents of the product list into a csv
-    private static void writeCsv(String path) {
+    public static void writeCsv(String path) {
         if (products.isEmpty())
             System.out.println("No products to write");
 

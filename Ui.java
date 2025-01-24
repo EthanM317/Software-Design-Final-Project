@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner; 
 
 
@@ -23,7 +24,7 @@ public class Ui {
         while(keepGoing.equals("Y") || keepGoing.equals("y")){
             System.out.println("Enter product name: "); 
             String productName = scanner.nextLine();
-            System.out.println("Enter ID: "); 
+            System.out.println("Enter ID: ");
             int productID = scanner.nextInt(); 
             System.out.println("Enter cost: "); 
             float cost = scanner.nextFloat();
@@ -67,6 +68,57 @@ public class Ui {
             }
         }
     }
-    
+
+    public static void editProduct() {
+        // Get list of products
+        ArrayList<Backend.Product> pList = Backend.getList();
+
+        // Print out list of products
+        int i=0;
+        int maxIndex;
+        for (Backend.Product p : pList) {
+            System.out.println(i + " - " + p.getName() + ", " + p.getCost() + ", " + p.getId());
+            i++;
+        }
+        maxIndex = i;
+
+        boolean loop = true;
+        while (loop) {
+            System.out.println("Enter the index of the product you want to edit");
+            String input = scanner.nextLine();
+
+            try {
+                int index = Integer.parseInt(input);
+                
+                if (index >= maxIndex || index < 0) {
+                    System.out.println("please enter a valid index");
+                    continue;
+                }
+
+                String newName;
+                float newCost;
+                int newId;
+
+                System.out.print("\nEnter a new name: ");
+                newName = scanner.nextLine();
+                System.out.print("\nEnter a new cost: ");
+                newCost =  scanner.nextFloat();
+                System.out.print("\nEnter a new Id: ");
+                newId = scanner.nextInt();
+
+
+                Backend.Product editProduct = pList.get(index);
+                editProduct.setName(newName);
+                editProduct.setCost(newCost);
+                editProduct.setId(newId);
+                Backend.writeCsv(Backend.CSV_PATH);
+                break;
+            }
+            catch (Exception e) {
+                System.out.println("Please enter an integer number");
+                continue;
+            }
+        }
+    }
 }
 
