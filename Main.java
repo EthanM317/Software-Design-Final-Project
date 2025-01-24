@@ -1,8 +1,7 @@
 public class Main {
     public static void main(String[] args) {
-        
+        Ui.menu();
 
-        Ui.addProduct();
-        Ui.removeProduct();
+
     }
 }
