@@ -23,7 +23,7 @@ public class Backend {
     }
     
     // Main list of products
-    private static ArrayList<Product> products;    
+    private static ArrayList<Product> products = new ArrayList<>();    
 
     // Get list 
     public static ArrayList<Product> getList() { return products; }
@@ -64,8 +64,15 @@ public class Backend {
             BufferedReader f = new BufferedReader(new FileReader(filePath));
             String line;
 
+            // First line is garbage
+            f.readLine();
+
             while ((line = f.readLine()) != null) {
                 String[] values = line.split(",");
+
+                // System.out.println(values[0]);
+                // System.out.println(values[1]);
+                // System.out.println(values[2]);
                 
                 addProduct(values[0], Float.parseFloat(values[1]), Integer.parseInt(values[2]));
             }
@@ -74,6 +81,15 @@ public class Backend {
         catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) {
+        readProducts("data.csv");
+    }
+
+
+    public static void printProducts() {
+
     }
 
 }
