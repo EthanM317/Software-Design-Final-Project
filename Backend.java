@@ -3,6 +3,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 
 public class Backend {
+    // Product class
     public static class Product {
         // Product properties
         private String name;
@@ -15,13 +16,17 @@ public class Backend {
             this.cost = cost;
             this.id = id;
         }
+
+        public String getName() { return name; }
+        public float getCost() { return cost; }
+        public int getId() { return id; }
     }
     
     // Main list of products
     private static ArrayList<Product> products;    
 
     // Get list 
-    private static ArrayList<Product> getList() { return products; }
+    public static ArrayList<Product> getList() { return products; }
 
     // Adds a product to the master product list
     public static void addProduct(String name, float cost, int id) {
